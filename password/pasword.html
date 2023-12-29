@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 ,maxium-scale=1.0,user-scalable=no" >
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" method="post" onsubmit="return validate()">
+         <p>
+            <h1>Rs Form</h1>
+         </p>
+         <p>
+            <label for="Username" >Username</label>
+            <input type="text" onkeyup="white(this.value)"> <br>
+         </p>
+         <p>
+            <label for="password">password</label>
+            <input type="password" id="password" >
+         </p>
+         <p>
+            <label for="com_password">Comfirm password</label>
+            <input type="password" id="com_password"  onkeyup="check(this)">
+             <error id="alert"></error>
+         </p>
+         <p>
+            
+         </p>
+             <!-- <error id="alert1"></error> -->
+            <button id="btn" onclick="toggle(this)">Show</button>
+            <input type="submit" value="Submit" id="submit">
+         </p>
+    </form>
+    <!-- <input type="text"> <br>
+    <input type="password" id="password" ><br>
+    <input type="password" id="com_password"  onkeyup="check(this)"><br>
+    <p id="alert"></p>
+    <button id="btn" onclick="toggle(this)">Show</button> -->
+
+    <script>
+         let  pass = document.getElementById("password");
+         function toggle(ele){
+            let type = pass.getAttribute("type");
+            if(type == "password")
+            {
+                pass.setAttribute("type","text");
+                 ele.innerText = "Hide"
+            }else{
+                pass.setAttribute("type","password");
+                ele.innerText = "Show";
+            }
+         }
+         let flag =1;
+         function check(item)
+         {
+            if(item.value.length > 0)
+            {
+                if(item.value != pass.value)
+                {
+                    document.getElementById("alert").innerText = "does not match comfrim password";
+                    flag =0;
+                }
+                else{
+                    document.getElementById("alert").innerText = " ";
+                    flag =1;
+                }
+            }else
+            {
+                document.getElementById("alert").innerText = "Enter comfrim password";
+                flag =0;
+            }
+         }
+         function validate()
+         {
+            if(flag ==1) return true;
+            else return false;
+         }
+
+         window.addEventListener("keyup",event=>{
+            var iscaps = event.getModifierState('CapsLock');
+            if(iscaps)
+                document.getElementById("alert1").innerText = "WARNING! CapsLope on";
+            else
+            document.getElementById("alert1").innerText = " ";
+         })
+
+         let patten = /\s/g;
+         let  ale = document.getElementById("alert2 ");
+         function white(data) {
+            let isSpace =patten.test(data);
+            if(isSpace){
+                alert(isSpace);
+                ale.innerHTML= "Space is not allow";
+            }else{
+                ale.innerHTML=" "; 
+            }
+             
+         }
+    </script>
+</body>
+</html>
